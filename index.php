@@ -24,7 +24,7 @@
                 //my server variables
                 $server = 'localhost'; // 127.0.0.1
                 $username = 'root';
-                $password = '';
+                $password = 'oma';
                 $db = 'csc309';
 
                 //my server connection
