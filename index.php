@@ -7,7 +7,7 @@
     <h2>Registration Form</h2>
 
     <!-- Select all users and display in a Table -->
-    <table>
+    <table cellpadding="10" cellspacing="1" border="1">
         <thead>
             <tr>
                 <td>SN</td>
@@ -24,44 +24,39 @@
                 //my server variables
                 $server = 'localhost'; // 127.0.0.1
                 $username = 'root';
-                $password = 'rootroot';
+                $password = '';
                 $db = 'csc309';
 
-            //my server connection
-            $conn = new mysqli($server, $username, $password, $db);
+                //my server connection
+                $conn = new mysqli($server, $username, $password, $db);
             
             //check server connection
-            if ($conn->connect_error) {
-                die("Connection failed: " . $conn->connect_error);
-            }
-            
-            //my select query
-            $sql = "SELECT * FROM users";
-            
-            //query result
-            $result = $conn->query($sql);
-            
-            // Check if the query was successful
-            if ($result === false) {
-                die("Error: " . $conn->error);
-            }
-            //fetch the data from the result set
-            while ($row = $result->fetch_assoc()) {?>
-                 <tr>
-                    <td><?php $row["id"];?></td>
-                    <td><?php $row["lastname"]</td> 	
-                    <td><?php $row["firstname"]</td> 	
-                    <td><?php $row["gender"];?></td>
-                    <td><?php $row["date_of_birth"];?></td> 	
-                    <td><?php $row["email"];?></td>
-               </tr>
-            <?php
+            if ($conn){
+                //my select query
+                $sql = "SELECT * FROM users";
+                
+                //query result
+                $result = $conn->query($sql);
+                
+                //fetch the data from the result set
+                while ($row = $result->fetch_assoc()) {?>
+                    <tr>
+                        <td><?php echo $row["id"];?></td>
+                        <td><?php echo $row["lastname"];?></td> 	
+                        <td><?php echo $row["firstname"];?></td> 	
+                        <td><?php echo $row["gender"];?></td>
+                        <td><?php echo $row["date_of_birth"];?></td> 	
+                        <td><?php echo $row["email"];?></td>
+                   </tr>
+                
+                 <?php }
+                
                 }
-                // Close the database connection
+                // Close connection
                 $conn->close();
-            ?>
-
+             ?>
+            
         </tbody>
     </table>
-</body>
+  </body>
 </html>
